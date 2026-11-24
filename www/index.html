@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Gallery</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #101827;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: #17243b;
+    padding: 25px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container {
+    padding: 25px;
+}
+
+button {
+    background: #2878ff;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: 15px;
+}
+
+button:active {
+    background: #1452bb;
+}
+
+#preview {
+    width: 100%;
+    max-width: 350px;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+#status {
+    color: #80b5ff;
+    margin-top: 20px;
+}
+
+.gallery-box {
+    margin-top: 25px;
+    padding: 20px;
+    background: #1b2b45;
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>📸 MY GALLERY</header>
+
+<div class="container">
+
+    <h2>Welcome to My Gallery</h2>
+
+    <p>Select a photo from your phone.</p>
+
+    <button onclick="openGallery()">
+        Open Gallery
+    </button>
+
+    <div class="gallery-box">
+
+        <h3>Photo Preview</h3>
+
+        <img id="preview" style="display:none;">
+
+        <p id="status">No photo selected.</p>
+
+    </div>
+
+</div>
+
+<script>
+function openGallery() {
+
+    const input = document.createElement("input");
+
+    input.type = "file";
+    input.accept = "image/*";
+
+    input.onchange = function(event) {
+
+        const file = event.target.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        const imageURL = URL.createObjectURL(file);
+
+        const preview = document.getElementById("preview");
+
+        preview.src = imageURL;
+        preview.style.display = "block";
+
+        document.getElementById("status").innerText =
+            "Photo selected successfully!";
+
+    };
+
+    input.click();
+}
+</script>
+
+</body>
+</html>
+
